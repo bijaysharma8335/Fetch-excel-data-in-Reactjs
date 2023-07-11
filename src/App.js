@@ -20,7 +20,29 @@ const App = () => {
     };
     return (
         <div className="App">
-            <input type="file" accept=".xlx,.xls" onChange={onChangeHandler} />
+            <h2> Fetch Excel file data and display </h2>
+            <input type="file" accept=".xlsx,.xls" onChange={onChangeHandler} />
+            {/* display data */}
+            {data.length > 0 && (
+                <table className="table" style={{ width: "100%" }}>
+                    <thead>
+                        <tr>
+                            {Object.keys(data[0]).map((key) => (
+                                <th key={key}>{key}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((elem, index) => (
+                            <tr key={index}>
+                                {Object.values(elem).map((val, index) => (
+                                    <td key={index}>{val}</td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 };
